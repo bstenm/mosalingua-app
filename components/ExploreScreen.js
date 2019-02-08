@@ -6,7 +6,7 @@ import config from '../config';
 
 const ustensilsIcon = require('../assets/ustensils.png');
 
-class ExploreScreen extends React.Component {
+class ExploreScreen extends React.PureComponent {
       static navigationOptions = {
             title: 'French',
       };

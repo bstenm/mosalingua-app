@@ -1,4 +1,3 @@
-
 export default {
       categories: [
             { id: 0, category: 'Optional packs', description: 'Additional content to boost your learning' },
