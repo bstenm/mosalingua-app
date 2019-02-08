@@ -2,26 +2,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Tabs from 'react-native-tabs';
 import { StyleSheet } from 'react-native';
+import routes from '../config/routes';
 import TabBarItem from './TabBarItem'
 
 class TabBar extends React.Component {
-      state = { tabSelected: 'home' };
 
-      onTabPress = screen => {
-            this.setState({ tabSelected: screen });
+      onTabPress = tab => {
+            const screen = tab.props.name;
 
-            this.props.navigation.navigate({
-                  home: 'HomeScreen',
-                  learn: 'FlashCardScreen',
-            }[screen]);
+            // the route corresponding to that tab
+            const route = routes[screen];
+
+            // navigate to that screen
+            this.props.navigation.navigate(route);
       };
 
       render() {
+            const { routeName } = this.props.navigation.state;
+
+            // get the current screen we are on from the route name
+            const currentScreen = Object.keys(routes).find(key => routes[key] === routeName)
+
             return (
                   <Tabs
                         style={styles.container}
-                        selected={this.state.tabSelected}
-                        onSelect={tab => this.onTabPress(tab.props.name)}
+                        selected={currentScreen}
+                        onSelect={this.onTabPress}
                   >
                         {[
                               { label: 'home', icon: 'home' },
@@ -48,8 +54,13 @@ const styles = StyleSheet.create({
       }
 });
 
-TabBar.defaultProps = {};
-
-TabBar.propTypes = {};
+TabBar.propTypes = {
+      navigation: PropTypes.shape({
+            state: PropTypes.shape({
+                  routeName: PropTypes.string.isRequired,
+            }).isRequired,
+            navigate: PropTypes.func.isRequired,
+      }).isRequired,
+};
 
 export default TabBar;

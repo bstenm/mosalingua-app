@@ -6,12 +6,8 @@ import TabBar from './TabBar';
 const frenchIcon = require('../assets/icon-french.png');
 
 class HomeScreen extends React.Component {
-      static navigationOptions = ({ navigation, navigationOptions, screenProps }) => {
-            console.log(navigationOptions)
-            console.log(screenProps)
-            return {
-                  title: navigation.getParam('otherParam', 'A Nested Details Screen'),
-            };
+      static navigationOptions = {
+            title: 'French',
       };
 
       render() {
@@ -45,11 +41,12 @@ const styles = StyleSheet.create({
             borderColor: '#EEE',
             textAlign: 'center',
             backgroundColor: '#FFF',
+            color: '#555',
       },
 });
 
-HomeScreen.defaultProps = {};
-
-HomeScreen.propTypes = {};
+HomeScreen.propTypes = {
+      navigation: PropTypes.object.isRequired,
+};
 
 export default HomeScreen;
