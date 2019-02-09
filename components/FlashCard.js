@@ -1,26 +1,30 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export const FlashCard = () => (
+export const FlashCard = ({ data }) => (
       <View style={styles.card} >
             <View style={{ flex: 1 }} >
-                  <Text style={styles.expression}>to guess</Text>
-                  <Text style={styles.translation}>deviner</Text>
-                  <Text style={styles.example}>Tu ne vas jamais deviner ce qui est arrive au travail aujourd'hui</Text>
-                  <Text style={styles.exampleTranslation}>You'll never guess what happened at work today</Text>
+                  <Text style={styles.expression}>{data.expression}</Text>
+                  <Text style={styles.expressionTranslation}>{data.expressionTranslation}</Text>
+                  <Text style={styles.example}>{data.example}</Text>
+                  <Text style={styles.exampleTranslation}>{data.exampleTranslation}</Text>
             </View>
             <View style={styles.bottomActions}>
-                  <Icon style={styles.bottomActionsIcon} name="volume-up" />
-                  <Text style={styles.bottomActionsButton}>Verbs</Text>
-                  <Icon style={[styles.bottomActionsIcon, styles.infoIcon]} name="info" />
+                  <Icon style={styles.actionsIcon} name="volume-up" />
+                  <Text style={styles.actionsButton}>Verbs</Text>
+                  <Icon style={[styles.actionsIcon, styles.infoIcon]} name="info" />
             </View>
       </View>
 );
 
+const { width, height } = Dimensions.get('window');
+
 const styles = StyleSheet.create({
       card: {
             flex: 1,
+            width: width - 20,
+            height: height - 80,
             padding: 20,
             margin: 20,
             marginBottom: 60,
@@ -37,7 +41,7 @@ const styles = StyleSheet.create({
             textAlign: 'center',
             marginBottom: 5,
       },
-      translation: {
+      expressionTranslation: {
             fontSize: 23,
             color: '#222',
             textAlign: 'center',
@@ -59,7 +63,7 @@ const styles = StyleSheet.create({
             flexDirection: 'row',
             justifyContent: 'space-between',
       },
-      bottomActionsButton: {
+      actionsButton: {
             borderWidth: 1,
             borderRadius: 3,
             padding: 5,
@@ -68,7 +72,7 @@ const styles = StyleSheet.create({
             color: '#F66F24',
             borderColor: '#F66F24',
       },
-      bottomActionsIcon: {
+      actionsIcon: {
             color: '#F66F24',
             padding: 8,
             borderWidth: 1,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import FlashCard from './FlashCard';
 import LearnTabs from './LearnTabs';
+import FlipAnimation from './FlipAnimation';
 
 export class LearnScreen extends React.Component {
       static navigationOptions = {
@@ -11,7 +11,7 @@ export class LearnScreen extends React.Component {
       render() {
             return (
                   <View  style={styles.container} >
-                        <FlashCard />
+                        <FlipAnimation />
                         <LearnTabs />
                   </View>
             );
