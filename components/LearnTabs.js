@@ -3,7 +3,7 @@ import Tabs from 'react-native-tabs';
 import capitalize from 'lodash/capitalize';
 import { StyleSheet, Text } from 'react-native';
 
-export const LearnTabs = () => (
+export const LearnTabs = ({ flipCard }) => (
       <Tabs>
             {[
                   { label: 'again', backgroundColor: 'red' },
@@ -15,6 +15,7 @@ export const LearnTabs = () => (
                         key={label}
                         style={[styles.button,  { backgroundColor }]}
                         name={label}
+                        onPress={flipCard}
                   >
                         {capitalize(label)}
                   </Text>

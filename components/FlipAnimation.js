@@ -3,24 +3,8 @@ import { View, StyleSheet, Animated, TouchableOpacity, Text, Dimensions } from '
 import FlashCard from './FlashCard';
 import { flashCardData, flashCardBackData } from '../mockData';
 
-class flipAnimation extends Component {
+class FlipAnimation extends Component {
       state = { animatedValue: new Animated.Value(0) };
-
-      flipCard() {
-            if (this.value >= 90) {
-                  Animated.spring(this.animatedValue,{
-                        toValue: 0,
-                        friction: 8,
-                        tension: 10
-                  }).start();
-            } else {
-                  Animated.spring(this.animatedValue,{
-                        toValue: 180,
-                        friction: 8,
-                        tension: 10
-                  }).start();
-            }
-      }
 
       componentWillMount() {
             this.animatedValue = new Animated.Value(0);
@@ -51,6 +35,22 @@ class flipAnimation extends Component {
             });
       }
 
+      flipCard (animatedValue) {
+            if (this.value >= 90) {
+                  Animated.spring(this.animatedValue, {
+                        toValue: 0,
+                        friction: 8,
+                        tension: 10
+                  }).start();
+            } else {
+                  Animated.spring(this.animatedValue, {
+                        toValue: 180,
+                        friction: 8,
+                        tension: 10
+                  }).start();
+            }
+      }
+
       render() {
             const frontAnimatedStyle = {
                   transform: [
@@ -71,7 +71,8 @@ class flipAnimation extends Component {
                               frontAnimatedStyle,
                               { opacity: this.frontOpacity }
                         ]}>
-                              <TouchableOpacity onPress={() => this.flipCard()} style={styles.flipCard }>
+                              <TouchableOpacity
+                                    onPress={() => this.flipCard()} style={styles.flipCard }>
                                     <FlashCard data={flashCardData} />
                               </TouchableOpacity>
                         </Animated.View>
@@ -106,4 +107,4 @@ const styles = StyleSheet.create({
       }
 });
 
-export default flipAnimation;
+export default FlipAnimation;
