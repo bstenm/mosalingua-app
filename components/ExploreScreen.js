@@ -1,5 +1,6 @@
 import React from "react";
-import { ListItem, Icon } from "react-native-elements";
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { ListItem } from "react-native-elements";
 import { View, FlatList, Image } from "react-native";
 import TabBar from './TabBar';
 import config from '../config';
@@ -9,6 +10,23 @@ const ustensilsIcon = require('../assets/ustensils.png');
 class ExploreScreen extends React.PureComponent {
       static navigationOptions = {
             title: 'French',
+            headerRight: (
+                  <View style={{ paddingRight: 20, flexDirection: 'row' }}>
+                        <Icon
+                              style={{ marginRight: 10 }}
+                              size={25}
+                              name='plus-circle'
+                              onPress={() => alert('Add one?')}
+                              color='#FFF'
+                        />
+                        <Icon
+                              size={25}
+                              name='search'
+                              onPress={() => alert('Search')}
+                              color='#FFF'
+                        />
+                        </View>
+            ),
       };
 
       render() {

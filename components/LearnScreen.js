@@ -2,14 +2,25 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Animated, TouchableOpacity, Text, Dimensions } from 'react-native';
 import FlashCard from './FlashCard';
 import LearnTabs from './LearnTabs';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { flashCardData, flashCardBackData } from '../mockData';
 
-class FlipAnimation extends Component {
-      state = { animatedValue: new Animated.Value(0) };
-
+class LearnScreen extends Component {
       static navigationOptions = {
-            title: 'Self-Assessment',
+            headerTitle: 'Self-Assessment',
+            headerRight: (
+                  <View style={{ paddingRight: 20 }}>
+                        <Icon
+                              size={30}
+                              name='question-circle'
+                              onPress={() => alert('What is this?')}
+                              color='#FFF'
+                              />
+                        </View>
+            ),
       };
+
+      state = { animatedValue: new Animated.Value(0) };
 
       componentWillMount() {
             this.animatedValue = new Animated.Value(0);
@@ -116,4 +127,4 @@ const styles = StyleSheet.create({
       }
 });
 
-export default FlipAnimation;
+export default LearnScreen;
