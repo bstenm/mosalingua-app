@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Animated, TouchableOpacity, Text, Dimensions } from 'react-native';
 import FlashCard from './FlashCard';
+import LearnTabs from './LearnTabs';
 import { flashCardData, flashCardBackData } from '../mockData';
 
 class FlipAnimation extends Component {
-      state = { animatedValue: new Animated.Value(0) };
+
+      static navigationOptions = {
+            title: 'Self-Assessment',
+      };
 
       componentWillMount() {
             this.animatedValue = new Animated.Value(0);
@@ -65,27 +69,30 @@ class FlipAnimation extends Component {
             };
 
             return (
-                  <View>
-                        <Animated.View style={[
-                              styles.flipCard,
-                              frontAnimatedStyle,
-                              { opacity: this.frontOpacity }
-                        ]}>
-                              <TouchableOpacity
-                                    onPress={() => this.flipCard()} style={styles.flipCard }>
-                                    <FlashCard data={flashCardData} />
-                              </TouchableOpacity>
-                        </Animated.View>
-                        <Animated.View style={[
-                              styles.flipCard,
-                              styles.flipCardBack,
-                              backAnimatedStyle,
-                              { opacity: this.backOpacity }
-                        ]}>
-                              <TouchableOpacity onPress={() => this.flipCard()} style={styles.flipCard} >
-                                    <FlashCard data={flashCardBackData} />
-                              </TouchableOpacity>
-                        </Animated.View>
+                  <View  style={styles.container} >
+                        <View>
+                              <Animated.View style={[
+                                    styles.flipCard,
+                                    frontAnimatedStyle,
+                                    { opacity: this.frontOpacity }
+                              ]}>
+                                    <TouchableOpacity
+                                          onPress={() => this.flipCard()} style={styles.flipCard }>
+                                          <FlashCard data={flashCardData} />
+                                    </TouchableOpacity>
+                              </Animated.View>
+                              <Animated.View style={[
+                                    styles.flipCard,
+                                    styles.flipCardBack,
+                                    backAnimatedStyle,
+                                    { opacity: this.backOpacity }
+                              ]}>
+                                    <TouchableOpacity onPress={() => this.flipCard()} style={styles.flipCard} >
+                                          <FlashCard data={flashCardBackData} />
+                                    </TouchableOpacity>
+                              </Animated.View>
+                        </View>
+                        <LearnTabs />
                   </View>
             );
       }
@@ -94,6 +101,13 @@ class FlipAnimation extends Component {
 const {  height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
+      container: {
+            flex: 1,
+            backgroundColor: '#F5F5F5',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderWidth: 1,
+      },
       flipCard: {
             alignItems:'center',
             backfaceVisibility: 'hidden',
