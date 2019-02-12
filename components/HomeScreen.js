@@ -2,41 +2,36 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { StyleSheet, View, Text, Image } from 'react-native';
-import TabBar from './TabBar';
+import TopBar from './TopBar';
 
 const frenchIcon = require('../assets/icon-french.png');
 
-class HomeScreen extends React.Component {
-      static navigationOptions = {
-            headerTitle: 'French',
-            headerRight: (
-                  <View style={{ paddingRight: 20 }}>
+const HomeScreen  = () => (
+      <View style={styles.container} >
+            <TopBar
+                  title="French"
+                  noGoBack={true}
+                  rightContent={() => (
                         <Icon
                               size={30}
                               name='question-circle'
                               onPress={() => alert('What is this?')}
                               color='#FFF'
                         />
-                        </View>
-            ),
-      };
-
-      render() {
-            return (
-                  <View style={styles.container} >
-                        <Image source={frenchIcon} />
-                        <Text style={styles.arrowUpBorder}></Text>
-                        <Text style={styles.arrowUp}></Text>
-                        <Text style={styles.text} >
-                              Congratulations, your learning path is now ready{'\n'}
-                              You'll make rapid progress in French, we promise you!{'\n'}
-                              Let's start right away with your first cards
-                        </Text>
-                        <TabBar navigation={this.props.navigation} />
-                  </View>
-            );
-      }
-};
+                  )}
+            />
+            <View style={styles.body}>
+                  <Image source={frenchIcon} />
+                  <Text style={styles.arrowUpBorder}></Text>
+                  <Text style={styles.arrowUp}></Text>
+                  <Text style={styles.text} >
+                        Congratulations, your learning path is now ready{'\n'}
+                        You'll make rapid progress in French, we promise you!{'\n'}
+                        Let's start right away with your first cards
+                  </Text>
+            </View>
+      </View>
+);
 
 const styles = StyleSheet.create({
       container: {
@@ -45,10 +40,13 @@ const styles = StyleSheet.create({
             alignItems: 'center',
             justifyContent: 'center',
       },
+      body: {
+            marginTop: 60,
+            alignItems: 'center',
+            justifyContent: 'center',
+      },
       text: {
             margin: 10,
-            marginBottom: 60,
-            marginTop: 0,
             padding: 30,
             borderWidth: 1,
             lineHeight: 20,
@@ -59,7 +57,7 @@ const styles = StyleSheet.create({
       },
       arrowUp: {
             zIndex: 10,
-            marginBottom: -5,
+            marginBottom: -15,
             width: 10,
             height: 10,
             borderLeftWidth: 30,
@@ -71,7 +69,7 @@ const styles = StyleSheet.create({
       },
       arrowUpBorder: {
             marginTop: 40,
-            marginBottom: -48,
+            marginBottom: -58,
             width: 10,
             height: 10,
             borderLeftWidth: 30,

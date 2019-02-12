@@ -1,39 +1,39 @@
 import React from "react";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { ListItem } from "react-native-elements";
-import { View, FlatList, Image } from "react-native";
-import TabBar from './TabBar';
+import { View, FlatList, Image, StyleSheet } from "react-native";
+import TopBar from './TopBar';
 import config from '../config';
 
 const ustensilsIcon = require('../assets/ustensils.png');
 
 class ExploreScreen extends React.PureComponent {
-      static navigationOptions = {
-            title: 'French',
-            headerRight: (
-                  <View style={{ paddingRight: 20, flexDirection: 'row' }}>
-                        <Icon
-                              style={{ marginRight: 10 }}
-                              size={25}
-                              name='plus-circle'
-                              onPress={() => alert('Add one?')}
-                              color='#FFF'
-                        />
-                        <Icon
-                              size={25}
-                              name='search'
-                              onPress={() => alert('Search')}
-                              color='#FFF'
-                        />
-                        </View>
-            ),
-      };
 
       render() {
             return (
-                  <View>
+                  <View style={styles.container}>
+                        <TopBar
+                              title="Categories"
+                              rightContent={() => (
+                                    <View style={{ flexDirection: 'row' }}>
+                                          <Icon
+                                                style={{ marginRight: 10 }}
+                                                size={25}
+                                                name='plus-circle'
+                                                onPress={() => alert('Add one?')}
+                                                color='#FFF'
+                                          />
+                                          <Icon
+                                                size={25}
+                                                name='search'
+                                                onPress={() => alert('Search')}
+                                                color='#FFF'
+                                          />
+                                    </View>
+                              )}
+                        />
                         <FlatList
-                              style={{ marginBottom: 90 }}
+                              style={{ marginTop: 80 }}
                               data={config.categories}
                               keyExtractor={item => item.id.toString()}
                               renderItem={({ item }) => {
@@ -53,10 +53,15 @@ class ExploreScreen extends React.PureComponent {
                                     )
                               }}
                         />
-                        <TabBar navigation={this.props.navigation} />
                   </View>
             );
       }
 };
+
+const styles = StyleSheet.create({
+      container: {
+            flex: 1,
+      }
+});
 
 export default ExploreScreen;
